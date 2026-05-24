@@ -1,0 +1,96 @@
+{
+  "name": "tbb",
+  "version": "2022.3.0",
+  "build": "h698db13_0",
+  "build_number": 0,
+  "channel": "https://repo.anaconda.com/pkgs/main/linux-64",
+  "subdir": "linux-64",
+  "fn": "tbb-2022.3.0-h698db13_0.conda",
+  "md5": "5168b87bc5f513c1cdd46d29e1737c37",
+  "url": "https://repo.anaconda.com/pkgs/main/linux-64/tbb-2022.3.0-h698db13_0.conda",
+  "sha256": "b7c396ec921a010710a5e3c89b0d1bc6588a0367adcf105b940087718cd2d6d7",
+  "depends": [
+    "__glibc >=2.28,<3.0.a0",
+    "libgcc >=14",
+    "libhwloc >=2.12.1,<2.12.2.0a0",
+    "libstdcxx >=14"
+  ],
+  "constrains": [],
+  "license": "Apache-2.0",
+  "timestamp": 1764336778000,
+  "size": 185421,
+  "_requested_specs": [],
+  "package_tarball_full_path": "/home/harsh/miniconda3/pkgs/tbb-2022.3.0-h698db13_0.conda",
+  "extracted_package_dir": "/home/harsh/miniconda3/pkgs/tbb-2022.3.0-h698db13_0",
+  "files": [
+    "lib/libtbb.so.12",
+    "lib/libtbb.so.12.17",
+    "lib/libtbbbind_2_5.so.3",
+    "lib/libtbbbind_2_5.so.3.17",
+    "lib/libtbbmalloc.so.2",
+    "lib/libtbbmalloc.so.2.17",
+    "lib/libtbbmalloc_proxy.so.2",
+    "lib/libtbbmalloc_proxy.so.2.17"
+  ],
+  "paths_data": {
+    "paths_version": 1,
+    "paths": [
+      {
+        "_path": "lib/libtbb.so.12",
+        "path_type": "softlink",
+        "sha256": "6a12d01e2797f4ad6069080a1881095d5a1799f1504797c769e7e0c38e5fc026",
+        "size_in_bytes": 390160
+      },
+      {
+        "_path": "lib/libtbb.so.12.17",
+        "path_type": "hardlink",
+        "sha256": "6a12d01e2797f4ad6069080a1881095d5a1799f1504797c769e7e0c38e5fc026",
+        "size_in_bytes": 390160,
+        "sha256_in_prefix": "6a12d01e2797f4ad6069080a1881095d5a1799f1504797c769e7e0c38e5fc026"
+      },
+      {
+        "_path": "lib/libtbbbind_2_5.so.3",
+        "path_type": "softlink",
+        "sha256": "8172b3d753145ea9965b5e82dc392da00573ae3b11a70ad4a7b31fe8dd0a3be4",
+        "size_in_bytes": 27216
+      },
+      {
+        "_path": "lib/libtbbbind_2_5.so.3.17",
+        "path_type": "hardlink",
+        "sha256": "8172b3d753145ea9965b5e82dc392da00573ae3b11a70ad4a7b31fe8dd0a3be4",
+        "size_in_bytes": 27216,
+        "sha256_in_prefix": "8172b3d753145ea9965b5e82dc392da00573ae3b11a70ad4a7b31fe8dd0a3be4"
+      },
+      {
+        "_path": "lib/libtbbmalloc.so.2",
+        "path_type": "softlink",
+        "sha256": "da5f0d29e7e183b07740647f9c4998e29f0633b0a386cba6ffbcbaa03b6bd908",
+        "size_in_bytes": 181960
+      },
+      {
+        "_path": "lib/libtbbmalloc.so.2.17",
+        "path_type": "hardlink",
+        "sha256": "da5f0d29e7e183b07740647f9c4998e29f0633b0a386cba6ffbcbaa03b6bd908",
+        "size_in_bytes": 181960,
+        "sha256_in_prefix": "da5f0d29e7e183b07740647f9c4998e29f0633b0a386cba6ffbcbaa03b6bd908"
+      },
+      {
+        "_path": "lib/libtbbmalloc_proxy.so.2",
+        "path_type": "softlink",
+        "sha256": "02fbc609c9692a4e7ba02998012d61de5fd50416afb076edd4bb6ecde159ae4b",
+        "size_in_bytes": 22400
+      },
+      {
+        "_path": "lib/libtbbmalloc_proxy.so.2.17",
+        "path_type": "hardlink",
+        "sha256": "02fbc609c9692a4e7ba02998012d61de5fd50416afb076edd4bb6ecde159ae4b",
+        "size_in_bytes": 22400,
+        "sha256_in_prefix": "02fbc609c9692a4e7ba02998012d61de5fd50416afb076edd4bb6ecde159ae4b"
+      }
+    ]
+  },
+  "link": {
+    "source": "/home/harsh/miniconda3/pkgs/tbb-2022.3.0-h698db13_0",
+    "type": 1
+  }
+}

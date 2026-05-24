@@ -1,0 +1,88 @@
+# Copyright (c) 2017, Intel Corporation
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+#     * Redistributions of source code must retain the above copyright notice,
+#       this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above copyright
+#       notice, this list of conditions and the following disclaimer in the
+#       documentation and/or other materials provided with the distribution.
+#     * Neither the name of Intel Corporation nor the names of its contributors
+#       may be used to endorse or promote products derived from this software
+#       without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE
+# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+# SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+# CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+# OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+# OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+import numpy as np
+import pytest
+
+import mkl_fft
+import mkl_fft.interfaces.numpy_fft as _nfft
+
+
+def test_patch():
+    old_module = np.fft.fft.__module__
+    assert not mkl_fft.is_patched()
+
+    mkl_fft.patch_numpy_fft()  # Enable mkl_fft in Numpy
+    assert mkl_fft.is_patched()
+    assert np.fft.fft.__module__ == _nfft.fft.__module__
+
+    mkl_fft.restore_numpy_fft()  # Disable mkl_fft in Numpy
+    assert not mkl_fft.is_patched()
+    assert np.fft.fft.__module__ == old_module
+
+
+def test_patch_redundant_patching():
+    old_module = np.fft.fft.__module__
+    assert not mkl_fft.is_patched()
+
+    mkl_fft.patch_numpy_fft()
+    mkl_fft.patch_numpy_fft()
+
+    assert mkl_fft.is_patched()
+    assert np.fft.fft.__module__ == _nfft.fft.__module__
+
+    mkl_fft.restore_numpy_fft()
+    assert mkl_fft.is_patched()
+    assert np.fft.fft.__module__ == _nfft.fft.__module__
+
+    mkl_fft.restore_numpy_fft()
+    assert not mkl_fft.is_patched()
+    assert np.fft.fft.__module__ == old_module
+
+
+def test_patch_reentrant():
+    old_module = np.fft.fft.__module__
+    assert not mkl_fft.is_patched()
+
+    with mkl_fft.mkl_fft():
+        assert mkl_fft.is_patched()
+        assert np.fft.fft.__module__ == _nfft.fft.__module__
+
+        with mkl_fft.mkl_fft():
+            assert mkl_fft.is_patched()
+            assert np.fft.fft.__module__ == _nfft.fft.__module__
+
+        assert mkl_fft.is_patched()
+        assert np.fft.fft.__module__ == _nfft.fft.__module__
+
+    assert not mkl_fft.is_patched()
+    assert np.fft.fft.__module__ == old_module
+
+
+def test_patch_warning():
+    if mkl_fft.is_patched():
+        pytest.skip("This test should not be run with a pre-patched NumPy.")
+    with pytest.warns(RuntimeWarning, match="restore_numpy_fft*"):
+        mkl_fft.restore_numpy_fft()

@@ -1,0 +1,7 @@
+prefix=/home/harsh/GEN-AI/venv
+includedir=${prefix}/include
+ 
+Name: PresentProto
+Description: Present extension headers
+Version: 1.4
+Cflags: -I${includedir}

@@ -1,0 +1,11 @@
+prefix=/home/harsh/GEN-AI/venv
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+toolexeclibdir=${libdir}
+includedir=/home/harsh/GEN-AI/venv/include
+
+Name: libffi
+Description: Library supporting Foreign Function Interfaces
+Version: 3.4.8
+Libs: -L${toolexeclibdir} -lffi
+Cflags: -I${includedir}
